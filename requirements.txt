@@ -4,3 +4,4 @@ django-mathfilters==1.0.0
 celery
 django-celery-results
 gevent
+gunicorn
