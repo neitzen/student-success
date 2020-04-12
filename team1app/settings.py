@@ -133,9 +133,7 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'team1webapp/static')
 STATIC_URL = '/static/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'team1webapp/static'),
-)                        
+                
 
 LOGIN_URL = '/authenticate'
 
