@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load mathfilters %}
+{% load static %}
+
+{% block content %}
+    <style>
+    table{
+        border-collapse: collapse;
+        }
+        table thead {
+            text-align: left;
+            background-color: #3a6070;
+            color: #FFF;
+            padding: 4px 30px 4px 8px;
+        }
+    table td {
+            border: 1px solid #e3e3e3;
+            padding: 4px 8px;
+        }
+    </style>
+    <body>
+        <h1>Course Overview</h1>
+        <table>
+            <thead>
+                <th>Class Name</th>
+                <th>Earned Points</th>
+                <th>Possible Points</th>
+                <th>Grade Goal</th>
+                <th>Actual Grade</th>
+                <th>Date Created</th>
+                <th> </th>
+                <th> </th>
+
+            </thead>
+            <tbody>
+                {% for class in classes %}
+                <tr>
+                    <td>{{ class.class_name }}</td>
+                    <td>{{ class.actual_points }}</td>
+                    <td>{{ class.total_points }}</td>
+                    <td>{{ class.point_goal }}</td>
+                    {% if class.total_points == 0 %}
+                        <td>0%</td>
+                        {% else %}
+                            <td>{{ class.actual_points|div:class.total_points|mul:100|floatformat }}%</td>
+                    {% endif %}
+                    <td>{{ class.created_date }}</td>
+                    <td>
+
+                                <a href="{% url 'team1webapp:class_delete' pk=class.pk %}" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger">Delete</a>
+                        <td><a href="{% url 'team1webapp:assignment_summary' pk=class.pk %}" class="btn btn-primary">View Details</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+{% endblock %}

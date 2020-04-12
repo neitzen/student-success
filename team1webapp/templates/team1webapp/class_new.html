@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Add a New Class</h1>
+    <form method="POST" class="service-form">
+            {% csrf_token %}
+        
+        <div class="form-group">
+                <label>Class Name</label>
+                <input type="text" name="class_name" placeholder="Class name..."/><br>
+        </div>
+        <div class="form-group">
+                <label>Grade</label>
+                <select name="point_goal">
+                        <option value="A+">A+</option>
+                        <option value="A">A</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B">B</option>
+                        <option value="B-">B-</option>
+                        <option value="C+">C+</option>
+                        <option value="C">C</option>
+                        <option value="C-">C-</option>
+                        <option value="D+">D+</option>
+                        <option value="D">D</option>
+                        <option value="D-">D-</option>
+                        <option value="F">F</option>
+                </select>
+        </div>
+
+        <div class="form-group">
+                <label>Actual Points</label>
+                <input type="number" name="actual_points" placeholder="Actual Points"/>
+        </div>
+        
+        <div class="form-group">
+                <label>Total Points</label>
+                <input type="number" name="total_points" placeholder="Total Points"/>
+        </div>
+
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+        
+        <h1>Edit Class</h1>
+        <form method="post" action="/class/{{id}}/edit">
+        {% csrf_token %}
+        
+        <input type="hidden" value="{{id}}" name="id"/>
+        <div class="form-group">
+                <label>First Name</label>
+                <input type="text" name="class_name" placeholder="Class name..."/><br>
+        </div>
+        
+        <select name="point_goal">
+                <option value="A+">A+</option>
+                <option value="A">A</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B">B</option>
+                <option value="B-">B-</option>
+                <option value="C+">C+</option>
+                <option value="C">C</option>
+                <option value="C-">C-</option>
+                <option value="D+">D+</option>
+                <option value="D">D</option>
+                <option value="D-">D-</option>
+                <option value="F">F</option>
+        </select><br>
+
+        <input type="number" name="actual_points" placeholder="Actual Points"/><br>
+        <input type="number" name="total_points" placeholder="Total Points"/><br>
+        <br>
+        <button type="submit" class="save btn btn-default">Update</button>
+        </form>
+        
+    
+
+
+{% endblock %}

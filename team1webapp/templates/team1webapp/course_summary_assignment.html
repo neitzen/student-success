@@ -1,0 +1,95 @@
+{% extends 'course_summary.html' %}
+{% load mathfilters %}
+{% block content %}
+    <style>
+    table{
+        border-collapse: collapse;
+        }
+        table thead {
+            text-align: left;
+            background-color: #3a6070;
+            color: #FFF;
+            padding: 4px 30px 4px 8px;
+        }
+        table th {
+            padding: 4px;
+        }
+        table td {
+            border: 1px solid #e3e3e3;
+            padding: 4px 8px;
+        }
+    </style>
+ <body>
+    <h3><a href="{% url 'team1webapp:course_summary' %}">Back to Overview</a></h3>
+    <h1>{{ the_class.class_name }} Course Summary</h1>
+
+    <div id="class-table">
+        <table>
+            <thead>
+                <th>Earned Points</th>
+                <th>Possible Points</th>
+                <th>Grade Goal</th>
+                <th>Actual Grade</th>
+                <th>Date Created</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ the_class.actual_points }}</td>
+                    <td>{{ the_class.total_points }}</td>
+                    <td>{{ the_class.point_goal }}</td>
+                    {% if the_class.total_points == 0 %}
+                        <td>0%</td>
+                        {% else %}
+                            <td>{{ the_class.actual_points|div:the_class.total_points|mul:100|floatformat }}%</td>
+                    {% endif %}
+                    <td>{{ the_class.created_date }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+        <br><br><br>
+        <h2>Assignments in {{ the_class.class_name }}</h2>
+        <div id="add-courses">
+            <a href="{% url 'team1webapp:assignment_new' pk=the_class.id%}">
+                <button class="btn">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </a>
+            <a href="{% url 'team1webapp:update_grade' pk=the_class.pk %}" class="btn btn-primary">Calculate Grade</a>
+        </div>
+        <br>
+    <div id="assignment-table">
+        <table>
+            <thead>
+                <th>Assignment Name</th>
+                <th>Earned Points</th>
+                <th>Possible Points</th>
+                <th>Grade</th>
+                <th>Due Date</th>
+                <th>Action</th>
+            </thead>
+            {% for assignment in assignments %}
+            <tr>
+                <td>{{ assignment.assignment_name }}</td>
+                <td>{{ assignment.earned_points }}</td>
+                <td>{{ assignment.max_points }}</td>
+                {% if assignment.max_points == 0 %}
+                    <td>0%</td>
+                    {% else %}
+                    <td>{{ assignment.earned_points|div:assignment.max_points|mul:100|floatformat }}%</td>
+                {% endif %}
+                <td>{{ assignment.due_date }}</td>
+                <td>
+                    <a href="{% url 'team1webapp:assignment_delete' pk=assignment.pk %}" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger">Delete</a>
+                </td>
+                <td>
+                    <a href="{% url 'team1webapp:create__assignment_reminder' assignmentPK=assignment.pk classPK=the_class.pk %}" class="btn btn-primary">Add Reminder</a>
+                </td>
+            </tr>
+
+        {% endfor %}
+        </table>
+    </div>
+ </body>
+{% endblock %}

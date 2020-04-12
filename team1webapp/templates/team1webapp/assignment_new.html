@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Add a New Assignment</h1>
+    <form method="POST" class="service-form">
+            {% csrf_token %}
+        
+        <div class="form-group">
+                <label>Assignment Name</label>
+                <input type="text" name="assignment_name" placeholder="Assignment name..."/><br>
+        </div>
+        <div class="form-group">
+                <label>Max Points</label>
+                <input type="text" name="max_points" placeholder="Max Points..."/><br>
+        </div>
+        <div class="form-group">
+                <label>Earned Points</label>
+                <input type="text" name="earned_points" placeholder="Earned Points..."/><br>
+        </div>
+        <div class="form-group">
+                <label>Due Date</label>
+                <input type="date" name="due_date" min="2020-01-01"/><br>
+        </div>
+        
+
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+{% endblock %}

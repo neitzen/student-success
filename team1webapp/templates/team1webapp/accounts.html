@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Authenticate</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
+        <style>
+                .container {
+                        margin-top: 50px !important;
+                }
+                ul {
+                        margin-top: 30px !important;
+                }
+                .messages {
+                        padding-left: 0px !important;
+                        list-style-type: none;
+                }
+        </style>
+</head>
+
+<body>
+        <div class="container">
+                <div class="row justify-content-center">
+                        <h2>Student Success</h2>
+                </div>
+                <br>
+        <div class="row justify-content-center">
+                
+
+                <div class="col-4">
+                        <div class="card">
+                        <h4 class="card-header text-center">Register</h4>
+                        <div class="card-block">
+
+                                <div class="form-group has-danger">
+                                        {% for m in messages %}
+                                        <div class="form-control-feedback">{{m}}</div>
+                                        {% endfor %}
+                                </div>
+
+                                <form method="post" action="accounts/register">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                        <label>First Name</label>
+                                        <input name="first_name" type="text" required class="form-control form-control-danger">
+                                </div>
+                                <div class="form-group">
+                                        <label>Last Name</label>
+                                        <input name="last_name" type="text" required class="form-control form-control-danger">
+                                </div>
+                                <div class="form-group">
+                                        <label>Username</label>
+                                        <input name="username" type="text" required class="form-control">
+                                </div>
+                                <div class="form-group">
+                                        <label>Email</label>
+                                        <input name="email" type="email" required class="form-control">
+                                </div>
+                                <div class="form-group">
+                                        <label>Password</label>
+                                        <input name="password" type="password" required class="form-control">
+                                </div>
+                                <div class="form-group">
+                                        <label>Confirm Password</label>
+                                        <input name="password_confirm" type="password" required class="form-control">
+                                </div>
+
+
+                                <div class="mx-auto text-center">
+                                        <input type="submit" value="Create Account" name="register" class="btn btn-primary">
+                                </div>
+                                </form>
+                        </div>
+                        </div>
+                </div>
+                
+                
+                
+                <div class="col-4">
+                        <div class="card">
+                        <h4 class="card-header text-center">Login</h4>
+                        <div class="card-block">
+
+                                <div class="form-group has-danger">
+                                        {% for m in messages %}
+                                        <div class="form-control-feedback">{{m}}</div>
+                                        {% endfor %}
+                                </div>
+
+                                <form method="post" action="accounts/login">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                        <label>Username</label>
+                                        <input name="username" required type="text" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                        <label>Password</label>
+                                        <input name="login_password" required type="password" class="form-control">
+                                </div>
+                                <div class="mx-auto text-center">
+                                        <input type="submit" value="Login" name="login" class="btn btn-primary">
+                                </div>
+                                <div class="mx-auto text-center">
+                                        <a href="{% url 'team1webapp:password_reset' %}">Forgot Password ?</a>
+                                </div>
+                                        
+                                </form>
+                        </div>
+                        </div>
+                </div>
+
+        </div>
+        </div>
+</body>
+</html>

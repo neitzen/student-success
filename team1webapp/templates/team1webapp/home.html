@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    {%if user.is_authenticated %}
+    <div class="page-container">
+        <h2 class=top-menu>
+            Hello {{ user.username }},
+        </h2>
+    </div>
+    {% endif %}
+
+    <div id="courses-content">
+        <div id="courses-header">
+            <div id="courses-title">
+                <h1 class="header-title">
+                    <span class="courses">Courses</span>
+                    <div id="add-courses">
+                        <a href="{% url 'team1webapp:class_new' %}">
+                            <button class="btn">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </a>
+                    </div>
+                </h1>
+                
+            </div>
+        </div>
+        <div id="course-list">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                <tr class="bg-info">
+                    <th>Course Name</th>
+                    <th>Current Points</th>
+                    <th>Point Goal</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for course in courses %}
+                        <tr>
+                            <td><a href="{% url 'team1webapp:assignment_summary' pk=course.pk %}">{{ course.class_name }}</a></td>
+                            <td>{{ course.actual_points }}</td>
+                            <td>{{ course.point_goal }}</td>
+                            <td>
+                                <a href="{% url 'team1webapp:class_delete' pk=course.pk %}" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

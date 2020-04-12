@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    <body>
+        <div id="reminder">
+            <h1>Create a reminder for {{ the_assignment.assignment_name }}</h1>
+            <a href="{% url 'team1webapp:create_reminder' pk=the_assignment.pk time_delay=1 %}" class="btn btn-primary">One Hour Before Due Date</a> <br><br>
+            <a href="{% url 'team1webapp:create_reminder' pk=the_assignment.pk time_delay=2 %}" class="btn btn-primary">One Day Before Due Date</a> <br><br>
+            <a href="{% url 'team1webapp:create_reminder' pk=the_assignment.pk time_delay=3 %}" class="btn btn-primary">One Week Before Due Date</a> <br><br>
+        </div>
+    </body>
+{% endblock %}
