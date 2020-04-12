@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'mathfilters',
     'django_celery_results',
     'gevent',
-    '',
+    
 ]
 
 MIDDLEWARE = [
