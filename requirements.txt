@@ -5,3 +5,5 @@ celery
 django-celery-results
 gevent
 gunicorn
+dj-database-url
+psycopg2
